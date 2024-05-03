@@ -1,0 +1,52 @@
+.header-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 55px;
+  background: #fff;
+
+  .header-liked {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--main-red);
+    padding: 7px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.025);
+      background: var(--main-red-light);
+    }
+
+    &:active {
+      transform: scale(1);
+      background: var(--main-red-dark);
+    }
+  }
+
+  .header-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--main-black);
+    padding: 7px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.025);
+      background: var(--main-black-light);
+    }
+
+    &:active {
+      transform: scale(1);
+      background: var(--main-black);
+    }
+  }
+}
+

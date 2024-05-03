@@ -1,0 +1,27 @@
+.product-field {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0px;
+
+
+  .product-block {
+    max-width: 300px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.030);
+    }
+  }
+
+}
+
+a {
+  text-decoration: none;
+}
+
+
+

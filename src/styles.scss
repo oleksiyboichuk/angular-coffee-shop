@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+@import "primeicons/primeicons.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "../node_modules/primeflex/primeflex.scss";
+
+* {
+  --main-red: #F83D2F;
+  --main-red-light: #fa5b4f;
+  --main-red-dark: #cb3327;
+  --main-black: #2A0E0C;
+  --main-black-light: #62403f
+}
+
+html {
+  font-family: "Reddit Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #fff;
+  background-image: radial-gradient(#F1F1F0 2px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.transition-slow {
+  transition: all .2s ease-in-out;
+}
+
+.product-button {
+  transition: all .2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
