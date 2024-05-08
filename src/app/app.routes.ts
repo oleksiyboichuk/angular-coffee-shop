@@ -22,9 +22,20 @@ export const routes: Routes = [
   },
 
   {
+    path: 'products/liked',
+    loadComponent: () => import('./components/products/components/liked/liked.component')
+      .then(c => c.LikedComponent),
+  },
+
+  {
+    path: 'order',
+    loadComponent: () => import('./components/products/pages/order/order.component')
+      .then(c => c.OrderComponent)
+  },
+
+  {
     path: '**',
     component: ErrorComponent,
-    // loadComponent: () => import('./shared/component/error/error.component')
-    //   .then(c => c.ErrorComponent),
+
   },
 ];

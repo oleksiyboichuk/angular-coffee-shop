@@ -1,10 +1,27 @@
 <div class="header-menu">
 
-  <div class="header-liked">
-    <i class="pi pi-heart" style="font-size: 2rem; color: #fff"></i>
-  </div>
+  <a routerLink="/products/liked">
+    <div class="header-liked relative">
+      <i class="pi pi-heart" style="font-size: 2rem; color: #fff"></i>
+      <div class='absolute bg-white text-black px-1 border-round top-0 right-0'>
+        {{likedCount}}
+      </div>
+    </div>
+  </a>
 
-  <div class="header-cart">
+  <div class="header-cart relative" (click)="showDialog()">
     <i class="pi pi-shopping-cart" style="font-size: 2rem; color: #fff"></i>
+    <div class='absolute bg-red-200 px-1 border-round top-0 right-0'>
+      {{count}}
+    </div>
   </div>
+</div>
+
+<div class='cart relative'>
+  <p-dialog header="Cart" [(visible)]="visible" [modal]="true" class='cart'>
+    <div class='flex gap-5'>
+      <button class='order-button' (click)="goToOrder()">Order now</button>
+    </div>
+    <app-cart />
+  </p-dialog>
 </div>

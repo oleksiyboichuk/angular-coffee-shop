@@ -1,0 +1,17 @@
+<div class="m-5">
+  <button class='back-button' (click)="goBack()">Back</button>
+</div>
+
+<div class='flex justify-content-center align-items-center wrapper'>
+  <div class='flex flex-row flex-wrap'>
+    @for(product of likedProducts; track product) {
+    <a routerLink="/products/detail/{{product.id}}">
+      <p-card class='m-4 card-block'>
+        <img [src]="product.image_url" alt="" class='small-img'>
+        <h1 class='text-xl'>{{product.name}}</h1>
+        <button class='remove' (click)="removeFromLiked($event, product.id)">Remove</button>
+      </p-card>
+    </a>
+    }
+  </div>
+</div>

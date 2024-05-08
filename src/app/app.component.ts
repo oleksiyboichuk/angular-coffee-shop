@@ -13,5 +13,5 @@ import { HeaderMenuComponent } from './shared/component/header-menu/header-menu.
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'angular-personal-project';
+  title = 'angular-project';
 }

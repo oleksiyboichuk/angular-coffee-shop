@@ -21,7 +21,7 @@ export class ProductService {
   }
 
   getProductsById(id: number): Observable<IProduct[]> {
-    const url = `${ this.baseUrl }/${ id }`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.get<IProduct[]>(url);
   }
 }

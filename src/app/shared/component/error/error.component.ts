@@ -5,7 +5,7 @@ import { CardModule } from 'primeng/card';
   selector: 'app-error',
   standalone: true,
   imports: [
-    // CardModule,
+    CardModule,
   ],
   templateUrl: './error.component.html',
   styleUrl: './error.component.scss',

@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../../../shared/models/product.model';
 import { AsyncPipe, JsonPipe, Location } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ProductService } from '../../service/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LocalStorageService } from '../../service/localstorage/localstorage.service';
 
 
 @Component({
@@ -21,6 +23,7 @@ import { InputTextModule } from 'primeng/inputtext';
     JsonPipe,
     DialogModule,
     InputTextModule,
+    ProgressSpinnerModule
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
@@ -30,12 +33,16 @@ export class ProductComponent implements OnInit {
   product$!: Observable<IProduct[]>;
   visible: boolean = false;
   currentImg: string = '';
-
+  isLoading: boolean = true;
+  buttonActive: boolean = true;
+  addToCartButtonState: string = 'Add to cart';
 
   constructor(
     private productService: ProductService,
+    private localStorageService: LocalStorageService,
     private route: ActivatedRoute,
     private location: Location,
+    private router: Router
   ) {
   }
 
@@ -45,9 +52,21 @@ export class ProductComponent implements OnInit {
 
   private getData(): void {
     this.id = +this.route.snapshot.params['id'];
-    console.log(this.id);
-    this.product$ = this.productService.getProductsById(this.id);
-    console.log(this.product$);
+    this.productService.getProductsById(this.id)
+      .subscribe(product => {
+        this.product$ = of(product);
+        this.isLoading = false;
+      })
+  }
+
+  addToCart(product: IProduct) {
+    this.localStorageService.addToCart(product);
+    this.addToCartButtonState = 'Already in cart';
+    this.buttonActive = false;
+  }
+
+  orderProducts() {
+    this.router.navigate(['/order'])
   }
 
   showModal(img: string): void {
@@ -62,6 +81,4 @@ export class ProductComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
-  protected readonly console = console;
 }
