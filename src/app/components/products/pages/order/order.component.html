@@ -8,4 +8,8 @@
 	<app-cart></app-cart>
 </div>
 
-<h2 class='flex justify-content-center align-items-center text-red-200'>Please enter your data:</h2>
+<div class='flex justify-content-center align-items-center mt-5 mb-5'>
+	@if(products.length !== 0) {
+	<app-order-form />
+	}
+</div>

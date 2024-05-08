@@ -20,13 +20,32 @@
         </div>
         <div class="flex justify-content-between align-items-center">
           <p>Add:</p>
+
           <div class="flex align-items-center gap-5">
+
+            <!-- <button
+              [ngClass]="{'bg-black-alpha-60 px-2 border-round product-button': !isProductInLiked(product), 'bg-red-400 px-2 border-round product-button': isProductInLiked(product)}"
+              (click)="addToLiked($event, product)" [disabled]="disabled">
+              <i class="pi pi-heart py-1" style="border: none; font-size: 1.1rem; color: #fff"></i>
+            </button> -->
+            @if(isProductInLiked(product)) {
+            <button class="bg-red-400 px-2 border-round product-button" [disabled]='true'>
+              <i class="pi pi-heart py-1" style="font-size: 1.1rem; color: #fff"></i>
+            </button>
+            } @else {
             <button class="bg-black-alpha-60 px-2 border-round product-button" (click)='addToLiked($event, product)'
               [disabled]='disabled'>
               <i class="pi pi-heart py-1" style="font-size: 1.1rem; color: #fff"></i>
             </button>
-            <button class="bg-green-400 px-2 border-round product-button" (click)="addToCart($event, product)">
+            }
+
+            <button class="bg-green-400 px-2 border-round product-button" (click)="addToCart($event, product)"
+              [disabled]='isProductInCart(product)'>
+              @if(isProductInCart(product)) {
+              <i class="pi pi-check py-1" style="font-size: 1.1rem; color: #fff"></i>
+              } @else {
               <i class="pi pi-shopping-cart py-1" style="font-size: 1.1rem; color: #fff"></i>
+              }
             </button>
           </div>
         </div>

@@ -22,18 +22,42 @@
         <p class="text-2xl font-light">Description: {{ product[0].description }}</p>
         <h2 class="text-red-400 text-4xl">{{ product[0].price }}$</h2>
         <div class="flex gap-2">
-          <button class="add-to-cart" (click)="addToCart(product[0])"
-            [disabled]="addToCartButtonState === 'Already in cart'">
-            {{ addToCartButtonState }}
+          @if(isProductInCart(product[0])) {
+          <button class="disable-button" (click)="addToCart(product[0])">
+            Already in cart
           </button>
-          @if(!buttonActive) {
+          } @else {
+          <button class="add-to-cart" (click)="addToCart(product[0])">
+            Add to cart
+          </button>
+          }
+          @if(isProductInCart(product[0])) {
           <button class="add-to-cart" (click)="orderProducts()">Order now</button>
           }
         </div>
       </div>
     </div>
-    <div class="flex flex-wrap">
 
+    <h2 class='text-center'>Details: </h2>
+
+    <div class="ml-8 flex justify-content-center gap-8 align-items-stretch mx-8">
+
+      <div>
+        <p class='font-bold text-xl text-green-500'>Weight: </p>
+        <p class='text-xl'>{{product[0].weight}}</p>
+      </div>
+      <div>
+        <p class='font-bold text-xl text-green-500'>Flavor profile:</p>
+        @for(flavor of product[0].flavor_profile; track flavor) {
+        <p class='text-xl'>{{flavor}}</p>
+        }
+      </div>
+      <div>
+        <p class='font-bold text-xl text-green-500'>Grind option:</p>
+        @for(grind of product[0].grind_option; track grind) {
+        <p class='text-xl'>{{grind}}</p>
+        }
+      </div>
     </div>
   </p-card>
   }

@@ -81,4 +81,9 @@ export class ProductComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  isProductInCart(product: IProduct): boolean {
+    const cartItems = this.localStorageService.getCartItems();
+    return cartItems.some(item => item.product.id === product.id);
+  }
 }

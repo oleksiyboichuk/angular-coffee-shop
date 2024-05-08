@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { LocalStorageService } from '../../service/localstorage/localstorage.service';
 import { IProduct } from '../../../../shared/models/product.model';
 import { CardModule } from 'primeng/card';
 import { CartComponent } from '../../components/cart/cart.component';
-import { Router } from '@angular/router';
+import { OrderFormComponent } from '../../../../shared/component/order-form/order-form.component';
 
 
 @Component({
@@ -11,7 +13,8 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [
     CardModule,
-    CartComponent
+    CartComponent,
+    OrderFormComponent
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'

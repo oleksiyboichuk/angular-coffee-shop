@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { ProductService } from './service/product.service';
 import { IProduct } from '../../shared/models/product.model';
 
+import { MessageService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
@@ -15,6 +17,7 @@ import { LocalStorageService } from './service/localstorage/localstorage.service
   selector: 'app-products',
   standalone: true,
   imports: [
+    CommonModule,
     CardModule,
     AsyncPipe,
     RouterLink,
@@ -30,7 +33,8 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private messageService: MessageService
   ) {
   }
 
@@ -50,13 +54,22 @@ export class ProductsComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.localStorageService.addToLiked(product);
-    this.disabled = true;
   }
 
   addToCart(event: Event, product: IProduct) {
     event.preventDefault();
     event.stopPropagation();
     this.localStorageService.addToCart(product);
-    this.disabled = true;
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully!' });
+  }
+
+  isProductInLiked(product: IProduct): boolean {
+    const likedItem = this.localStorageService.getLikedProducts();
+    return likedItem.some(item => item.id === product.id);
+  }
+
+  isProductInCart(product: IProduct): boolean {
+    const cartItems = this.localStorageService.getCartItems();
+    return cartItems.some(item => item.product.id === product.id);
   }
 }

@@ -1,0 +1,52 @@
+<form [formGroup]='registerForm' (ngSubmit)="submitDetails()">
+	<p-card header="Please enter your data:" [style]='{width: "360px"}'>
+
+		<div class='field'>
+			<label for="fullName">Name</label>
+			<input type="text" pInputText formControlName="fullName" class='w-full' name='fullName'
+				placeholder='Type your name' />
+			@if(fullName.invalid && fullName.dirty ||
+			fullName.touched) {
+			<small class='block p-error'>
+				@if(fullName.errors?.['required']) {
+				<div>Name is required</div>
+				}
+				@if(fullName.errors?.['pattern']) {
+				<div>Enter a valid name</div>
+				}
+			</small>
+			}
+		</div>
+
+		<div class='field'>
+			<label for="email">Email</label>
+			<input type="text" pInputText formControlName="email" class='w-full' name='email' placeholder='Type your name' />
+			@if(email.invalid && email.dirty ||
+			email.touched) {
+			<small class='block p-error'>
+				@if(email.errors?.['required']) {
+				<div>Email is required</div>
+				}
+				@if(email.errors?.['email']) {
+				<div>Email should be valid</div>
+				}
+			</small>
+			}
+		</div>
+
+		<div class='field'>
+			<label for="number">Phone number</label>
+			<input type="number" pInputText formControlName="number" class='w-full' name='number'
+				placeholder='Type your number' />
+			@if(number.invalid && number.dirty ||
+			number.touched) {
+			<small class='block p-error'>
+				@if(number.errors?.['required']) {
+				<div>Number is required</div>
+				}
+			</small>
+			}
+		</div>
+		<p-button label="Order" styleClass="w-full bg-green-400" [disabled]="registerForm.invalid" type="submit" />
+	</p-card>
+</form>
