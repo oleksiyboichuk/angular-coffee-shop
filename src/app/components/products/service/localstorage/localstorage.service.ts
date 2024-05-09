@@ -16,7 +16,7 @@ export class LocalStorageService {
     if (existingItemIndex !== -1) {
       cartItems[existingItemIndex].count++;
     } else {
-      cartItems.push({count: 1, product});
+      cartItems.push({ count: 1, product });
     }
     this.setCartItems(cartItems);
     this.cartItemsChanged.next();

@@ -29,12 +29,6 @@
           <p>Add:</p>
 
           <div class="flex align-items-center gap-5">
-
-            <!-- <button
-              [ngClass]="{'bg-black-alpha-60 px-2 border-round product-button': !isProductInLiked(product), 'bg-red-400 px-2 border-round product-button': isProductInLiked(product)}"
-              (click)="addToLiked($event, product)" [disabled]="disabled">
-              <i class="pi pi-heart py-1" style="border: none; font-size: 1.1rem; color: #fff"></i>
-            </button> -->
             @if(isProductInLiked(product)) {
             <button class="bg-red-400 px-2 border-round product-button" [disabled]='true'>
               <i class="pi pi-heart-fill py-1" style="font-size: 1.1rem; color: #fff"></i>
@@ -61,3 +55,5 @@
   </a>
   }
 </div>
+
+<p-toast />

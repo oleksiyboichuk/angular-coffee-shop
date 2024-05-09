@@ -3,9 +3,12 @@ import { Router } from '@angular/router';
 
 import { LocalStorageService } from '../../service/localstorage/localstorage.service';
 import { IProduct } from '../../../../shared/models/product.model';
-import { CardModule } from 'primeng/card';
 import { CartComponent } from '../../components/cart/cart.component';
 import { OrderFormComponent } from '../../../../shared/component/order-form/order-form.component';
+
+import { ToastModule } from 'primeng/toast';
+import { CardModule } from 'primeng/card';
+
 
 
 @Component({
@@ -14,7 +17,8 @@ import { OrderFormComponent } from '../../../../shared/component/order-form/orde
   imports: [
     CardModule,
     CartComponent,
-    OrderFormComponent
+    OrderFormComponent,
+    ToastModule
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'

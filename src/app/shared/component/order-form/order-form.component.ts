@@ -17,6 +17,7 @@ import { LocalStorageService } from '../../../components/products/service/locals
     CardModule,
     InputTextModule,
     ButtonModule,
+
   ],
   templateUrl: './order-form.component.html',
   styleUrl: './order-form.component.scss'
