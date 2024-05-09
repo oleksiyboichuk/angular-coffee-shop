@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AsyncPipe } from '@angular/common';
 import { Observable, map, of } from 'rxjs';
 import { RouterLink } from '@angular/router';
@@ -25,7 +25,8 @@ import { InputTextModule } from 'primeng/inputtext';
     RouterLink,
     ProgressSpinnerModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    NgOptimizedImage,
   ],
   providers: [
     MessageService

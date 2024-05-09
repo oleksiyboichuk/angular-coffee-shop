@@ -7,7 +7,7 @@
     @for(product of likedProducts; track product) {
     <a routerLink="/products/detail/{{product.id}}">
       <p-card class='m-4 card-block'>
-        <img [src]="product.image_url" alt="" class='small-img'>
+        <img [src]="product.image_url"  loading="lazy" [alt]="product.name" class='small-img'>
         <h1 class='text-xl'>{{product.name}}</h1>
         <button class='remove' (click)="removeFromLiked($event, product.id)">Remove</button>
       </p-card>

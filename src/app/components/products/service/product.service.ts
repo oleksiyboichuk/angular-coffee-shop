@@ -8,7 +8,7 @@ import { IProduct } from '../../../shared/models/product.model';
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'https://fake-coffee-api.vercel.app/api';
+  private baseUrl = 'https://fake-coffee-api.vercel.app/api?limit=3';
 
   constructor(private http: HttpClient) { }
 

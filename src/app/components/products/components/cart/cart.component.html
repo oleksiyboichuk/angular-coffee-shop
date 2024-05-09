@@ -9,7 +9,7 @@
 
 	@for(product of products; track product) {
 	<div class='flex gap-8 align-items-center justify-content-between cart-block'>
-		<img [src]="product?.image_url" [alt]='product?.name' class='cart-img'>
+		<img [src]="product?.image_url"  loading="lazy" [alt]='product?.name' class='cart-img'>
 		<p class='border-bottom-2 font-bold text-red-200'>{{product.name}}</p>
 		<p class='font-bold'>Price: <span class='font-light'>{{product?.price}}</span></p>
 		<p class='font-bold'>Count: <span class='font-light'>{{ count[product.id] }}</span></p>

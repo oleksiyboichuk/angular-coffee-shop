@@ -35,7 +35,8 @@ export const routes: Routes = [
 
   {
     path: '**',
-    component: ErrorComponent,
+    loadComponent: () => import('./shared/component/error/error.component')
+      .then(c => c.ErrorComponent),
 
   },
 ];
