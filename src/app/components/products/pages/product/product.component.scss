@@ -1,18 +1,13 @@
 .detail-img {
   width: 50%;
   cursor: pointer;
-  transition: all .5s ease-in-out;
-
-  &:hover {
-    transform: scale(1.050);
-  }
 }
 
 
 .add-to-cart {
   font-size: 25px;
   border-radius: 5px;
-  background: #22C55E;
+  background: var(--main-green);
   padding: 7px 20px;
   border: none;
   color: #fff;
@@ -21,6 +16,11 @@
 
   &:hover {
     transform: scale(1.050);
+  }
+
+  &:active {
+    background: var(--main-green-dark);
+    color: black;
   }
 }
 

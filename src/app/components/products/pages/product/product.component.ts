@@ -11,6 +11,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LocalStorageService } from '../../service/localstorage/localstorage.service';
+import { BackButtonComponent } from '../../../../shared/component/back-button/back-button.component';
 
 
 @Component({
@@ -23,7 +24,8 @@ import { LocalStorageService } from '../../service/localstorage/localstorage.ser
     JsonPipe,
     DialogModule,
     InputTextModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    BackButtonComponent,
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',

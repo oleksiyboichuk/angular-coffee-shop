@@ -1,5 +1,11 @@
 <div class="m-5">
-  <button class='back-button' (click)="goBack()">Back</button>
+  <app-back-button buttonText="Back"/>
+</div>
+
+<div>
+  @if(likedProducts.length === 0) {
+    <p class="text-center text-xl text-black-alpha-50">There is nothing here...</p>
+  }
 </div>
 
 <div class='flex justify-content-center align-items-center wrapper'>

@@ -17,13 +17,13 @@ export const routes: Routes = [
 
   {
     path: 'products/detail/:id',
-    loadComponent: () => import('./components/products/components/product/product.component')
+    loadComponent: () => import('./components/products/pages/product/product.component')
       .then(c => c.ProductComponent),
   },
 
   {
     path: 'products/liked',
-    loadComponent: () => import('./components/products/components/liked/liked.component')
+    loadComponent: () => import('./components/products/pages/liked/liked.component')
       .then(c => c.LikedComponent),
   },
 

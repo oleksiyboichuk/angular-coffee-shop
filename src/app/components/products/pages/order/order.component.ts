@@ -8,6 +8,7 @@ import { OrderFormComponent } from '../../../../shared/component/order-form/orde
 
 import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
+import { BackButtonComponent } from '../../../../shared/component/back-button/back-button.component';
 
 
 
@@ -18,7 +19,8 @@ import { CardModule } from 'primeng/card';
     CardModule,
     CartComponent,
     OrderFormComponent,
-    ToastModule
+    ToastModule,
+    BackButtonComponent,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'

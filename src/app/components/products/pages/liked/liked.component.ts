@@ -4,13 +4,15 @@ import { LocalStorageService } from '../../service/localstorage/localstorage.ser
 import { CardModule } from 'primeng/card';
 import { IProduct } from '../../../../shared/models/product.model';
 import { Location } from '@angular/common';
+import { BackButtonComponent } from '../../../../shared/component/back-button/back-button.component';
 
 @Component({
   selector: 'app-liked',
   standalone: true,
   imports: [
     CardModule,
-    RouterLink
+    RouterLink,
+    BackButtonComponent,
   ],
   templateUrl: './liked.component.html',
   styleUrl: './liked.component.scss'
@@ -27,8 +29,6 @@ export class LikedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLikedProducts();
-
-
   }
 
   getLikedProducts() {
