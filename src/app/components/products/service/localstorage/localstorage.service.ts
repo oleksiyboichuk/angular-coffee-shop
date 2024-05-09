@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { IProduct } from '../../../../shared/models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
   cartItemsChanged = new Subject<void>();
@@ -16,7 +16,7 @@ export class LocalStorageService {
     if (existingItemIndex !== -1) {
       cartItems[existingItemIndex].count++;
     } else {
-      cartItems.push({ count: 1, product });
+      cartItems.push({count: 1, product});
     }
     this.setCartItems(cartItems);
     this.cartItemsChanged.next();

@@ -3,7 +3,6 @@ import { Router, RouterLink } from '@angular/router';
 
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
-import { MessageService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -33,7 +32,6 @@ export class OrderFormComponent {
   constructor(
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
-    private messageService: MessageService,
     private router: Router,
   ) { }
 
@@ -43,6 +41,6 @@ export class OrderFormComponent {
 
   submitDetails() {
     this.localStorageService.clearCart();
-    this.router.navigate(['/products']);
+    this.router.navigate(['/products'], { queryParams: { showMessage: true } });
   }
 }

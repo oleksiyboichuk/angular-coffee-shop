@@ -4,17 +4,13 @@ import { Observable } from 'rxjs';
 
 import { IProduct } from '../../../shared/models/product.model';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   private baseUrl = 'https://fake-coffee-api.vercel.app/api';
 
-  constructor(
-    private http: HttpClient,
-  ) {
-  }
+  constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.baseUrl);
