@@ -1,9 +1,9 @@
 <form [formGroup]='registerForm' (ngSubmit)="submitDetails()">
-  <p-card header="Please enter your data:" [style]='{width: "360px"}'>
-
-    <div class='field'>
+  <div [style]='{width: "360px"}'>
+    <h2>Please enter your data:</h2>
+    <div class='field mt-5'>
       <label for="fullName">Name</label>
-      <input type="text" pInputText formControlName="fullName" class='w-full' name='fullName'
+      <input id="fullName" type="text" pInputText formControlName="fullName" class='w-full' name='fullName'
              placeholder='Type your name'/>
       @if (fullName.invalid && fullName.dirty ||
       fullName.touched) {
@@ -20,7 +20,8 @@
 
     <div class='field'>
       <label for="email">Email</label>
-      <input type="text" pInputText formControlName="email" class='w-full' name='email' placeholder='Type your name'/>
+      <input id="email" type="text" pInputText formControlName="email" class='w-full' name='email'
+             placeholder='Type your name'/>
       @if (email.invalid && email.dirty ||
       email.touched) {
         <small class='block p-error'>
@@ -36,7 +37,7 @@
 
     <div class='field'>
       <label for="number">Phone number</label>
-      <input type="number" pInputText formControlName="number" class='w-full' name='number'
+      <input id="number" type="number" pInputText formControlName="number" class='w-full' name='number'
              placeholder='Type your number'/>
       @if (number.invalid && number.dirty ||
       number.touched) {
@@ -48,7 +49,7 @@
       }
     </div>
     <p-button label="Order" styleClass="w-full bg-green-400" [disabled]="registerForm.invalid" type="submit"/>
-  </p-card>
+  </div>
 </form>
 
 <p-toast/>

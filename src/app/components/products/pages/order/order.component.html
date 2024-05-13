@@ -5,13 +5,17 @@
 <h1 class='flex justify-content-center align-items-center text-red-200 underline'>Order now!</h1>
 
 <div class='flex justify-content-center'>
-  <app-cart/>
+  <p-card>
+    <app-cart/>
+    @if (products.length !== 0) {
+      <app-order-form/>
+    }
+  </p-card>
+
 </div>
 
 <div class='flex justify-content-center align-items-center mt-5 mb-5'>
-  @if (products.length !== 0) {
-    <app-order-form/>
-  }
+
 </div>
 
 <p-toast/>

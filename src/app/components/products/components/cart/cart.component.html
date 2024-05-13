@@ -10,10 +10,10 @@
   @for (product of products; track product) {
     <div class='flex gap-8 align-items-center justify-content-between cart-block'>
       <img [src]="product?.image_url" loading="lazy" [alt]='product?.name' class='cart-img'>
-      <p class='border-bottom-2 font-bold text-red-200'>{{ product.name }}</p>
-      <p class='font-bold'>Price: <span class='font-light'>{{ product?.price }}</span></p>
+      <p class='font-bold'>{{ product.name }}</p>
+      <p class='font-bold'>Price: <span class='font-light'>{{ product?.price }}$</span></p>
       <p class='font-bold'>Count: <span class='font-light'>{{ count[product.id] }}</span></p>
-      <p class='font-bold'>Total: <span class='font-light'>{{ product.price * count[product.id] }}</span></p>
+      <p class='font-bold'>Total: <span class='font-light'>{{ product.price * count[product.id] }}$</span></p>
       <button class='plus-cart' (click)="plusCart(product.id)">+</button>
       <button class='minus-cart' (click)="minusCart(product.id)">-</button>
       <button class='delete-from-cart' (click)="removeFromCart(product.id)">
