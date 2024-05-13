@@ -11,7 +11,6 @@ import { CardModule } from 'primeng/card';
 import { BackButtonComponent } from '../../../../shared/component/back-button/back-button.component';
 
 
-
 @Component({
   selector: 'app-order',
   standalone: true,
@@ -23,14 +22,16 @@ import { BackButtonComponent } from '../../../../shared/component/back-button/ba
     BackButtonComponent,
   ],
   templateUrl: './order.component.html',
-  styleUrl: './order.component.scss'
+  styleUrl: './order.component.scss',
 })
 export class OrderComponent implements OnInit {
   products!: IProduct[];
+
   constructor(
     private localStorageService: LocalStorageService,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {
+  }
 
   ngOnInit(): void {
     this.getProducts();

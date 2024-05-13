@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+
 import { LocalStorageService } from '../../../components/products/service/localstorage/localstorage.service';
+
 
 @Component({
   selector: 'app-order-form',
@@ -17,31 +20,42 @@ import { LocalStorageService } from '../../../components/products/service/locals
     CardModule,
     InputTextModule,
     ButtonModule,
+    ToastModule,
 
   ],
   templateUrl: './order-form.component.html',
-  styleUrl: './order-form.component.scss'
+  styleUrl: './order-form.component.scss',
 })
 export class OrderFormComponent {
   registerForm = this.fb.group({
     fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     email: ['', [Validators.required, Validators.email]],
     number: ['', [Validators.required, Validators.pattern(/^\+?3?8?(0\d{9})$/)]],
-  }, {
-  })
+  }, {});
 
   constructor(
     private fb: FormBuilder,
     private localStorageService: LocalStorageService,
+    private messageService: MessageService,
     private router: Router,
-  ) { }
+  ) {
+  }
 
-  get fullName() { return this.registerForm.controls['fullName'] };
-  get email() { return this.registerForm.controls['email'] };
-  get number() { return this.registerForm.controls['number'] };
+  get fullName() {
+    return this.registerForm.controls['fullName'];
+  };
+
+  get email() {
+    return this.registerForm.controls['email'];
+  };
+
+  get number() {
+    return this.registerForm.controls['number'];
+  };
 
   submitDetails() {
     this.localStorageService.clearCart();
-    this.router.navigate(['/products'], { queryParams: { showMessage: true } });
+    this.router.navigate(['/products']);
+    this.messageService.add({severity: 'success', summary: 'Order accepted', detail: 'The operator will contact you shortly'});
   }
 }

@@ -44,7 +44,7 @@ export class ProductComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private route: ActivatedRoute,
     private location: Location,
-    private router: Router
+    private router: Router,
   ) {
   }
 
@@ -58,7 +58,7 @@ export class ProductComponent implements OnInit {
       .subscribe(product => {
         this.product$ = of(product);
         this.isLoading = false;
-      })
+      });
   }
 
   addToCart(product: IProduct) {
@@ -68,7 +68,7 @@ export class ProductComponent implements OnInit {
   }
 
   orderProducts() {
-    this.router.navigate(['/order'])
+    this.router.navigate(['/order']);
   }
 
   showModal(img: string): void {
@@ -78,10 +78,6 @@ export class ProductComponent implements OnInit {
 
   closeModal(): void {
     this.visible = false;
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
   isProductInCart(product: IProduct): boolean {

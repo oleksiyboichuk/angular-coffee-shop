@@ -1,17 +1,17 @@
 <div class="m-5">
-	<app-back-button buttonText="Back to products"/>
+  <app-back-button buttonText="Back to products"/>
 </div>
 
 <h1 class='flex justify-content-center align-items-center text-red-200 underline'>Order now!</h1>
 
 <div class='flex justify-content-center'>
-	<app-cart/>
+  <app-cart/>
 </div>
 
 <div class='flex justify-content-center align-items-center mt-5 mb-5'>
-	@if(products.length !== 0) {
-	<app-order-form />
-	}
+  @if (products.length !== 0) {
+    <app-order-form/>
+  }
 </div>
 
-<p-toast />
+<p-toast/>

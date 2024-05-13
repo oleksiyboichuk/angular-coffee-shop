@@ -8,12 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './service/product.service';
 import { IProduct } from '../../shared/models/product.model';
 import { LocalStorageService } from './service/localstorage/localstorage.service';
+import { FilterSearchPipe } from './pipes/filtersearch.pipe';
 
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -27,9 +29,12 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ToastModule,
     NgOptimizedImage,
+    FilterSearchPipe,
+    FormsModule,
+
   ],
   providers: [
-    MessageService
+    MessageService,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -38,6 +43,7 @@ export class ProductsComponent implements OnInit {
   products$!: Observable<IProduct[]>;
   isLoading: boolean = true;
   disabled: boolean = false;
+  searchTerm: string = '';
 
   constructor(
     private productService: ProductService,
@@ -52,7 +58,7 @@ export class ProductsComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['showMessage']) {
-        this.messageService.add({ severity: 'success', summary: 'Service Message', detail: 'Via MessageService' });
+        this.messageService.add({severity: 'success', summary: 'Service Message', detail: 'Via MessageService'});
       }
     });
   }
@@ -69,14 +75,14 @@ export class ProductsComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.localStorageService.addToLiked(product);
-    this.messageService.add({ severity: 'success', summary: `${product.name}`, detail: 'Has been added to the like' });
+    this.messageService.add({severity: 'success', summary: `${ product.name }`, detail: 'Has been added to the like'});
   }
 
   addToCart(event: Event, product: IProduct) {
     event.preventDefault();
     event.stopPropagation();
-    this.localStorageService.addToCart(product)
-    this.messageService.add({ severity: 'success', summary: `${product.name}`, detail: 'Has been added to the cart' });
+    this.localStorageService.addToCart(product);
+    this.messageService.add({severity: 'success', summary: `${ product.name }`, detail: 'Has been added to the cart'});
   }
 
   isProductInLiked(product: IProduct): boolean {
@@ -87,20 +93,5 @@ export class ProductsComponent implements OnInit {
   isProductInCart(product: IProduct): boolean {
     const cartItems = this.localStorageService.getCartItems();
     return cartItems.some(item => item.product.id === product.id);
-  }
-
-  searchProduct(event: Event): void {
-    if (event && event.target) {
-      const value = (event.target as HTMLInputElement).value.trim();
-      if (value === '') {
-        this.products$ = this.productService.getProducts()
-      }
-      if (value.length >= 2) {
-        this.products$ = this.productService.getProducts()
-          .pipe(
-            map(products => products.filter(product => product.name.toLowerCase().includes(value) || product.description.toLowerCase().includes(value)))
-          );
-      }
-    }
   }
 }
