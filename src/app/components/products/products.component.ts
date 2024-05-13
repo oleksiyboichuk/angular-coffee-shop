@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AsyncPipe } from '@angular/common';
-import { Observable, map, of } from 'rxjs';
+import { Observable, of, map } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 import { ProductService } from './service/product.service';
 import { IProduct } from '../../shared/models/product.model';
@@ -15,7 +17,7 @@ import { MessageService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
 
 @Component({
   selector: 'app-products',
@@ -31,7 +33,7 @@ import { FormsModule } from '@angular/forms';
     NgOptimizedImage,
     FilterSearchPipe,
     FormsModule,
-
+    PaginatorModule,
   ],
   providers: [
     MessageService,
@@ -40,10 +42,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './products.component.scss',
 })
 export class ProductsComponent implements OnInit {
-  products$!: Observable<IProduct[]>;
   isLoading: boolean = true;
   disabled: boolean = false;
   searchTerm: string = '';
+
+  first: number = 0;
+  rows: number = 10;
+  totalRecords: number = 0;
+  products: IProduct[] = [];
 
   constructor(
     private productService: ProductService,
@@ -66,7 +72,8 @@ export class ProductsComponent implements OnInit {
   private getData(): any {
     this.productService.getProducts()
       .subscribe(products => {
-        this.products$ = of(products);
+        this.totalRecords = products.length;
+        this.products = products.slice(this.first, this.first + this.rows);
         this.isLoading = false;
       });
   }
@@ -94,4 +101,11 @@ export class ProductsComponent implements OnInit {
     const cartItems = this.localStorageService.getCartItems();
     return cartItems.some(item => item.product.id === product.id);
   }
+
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+    this.getData();
+  }
+
 }

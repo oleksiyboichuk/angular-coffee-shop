@@ -14,7 +14,7 @@
 }
 
 <div class="product-field">
-  @for (product of products$ | async  | filterSearch: searchTerm; track product) {
+  @for (product of products  | filterSearch: searchTerm; track product) {
     <a routerLink="detail/{{product.id}}">
       <div class="product-block hover:shadow-7">
         <p-card header="{{product.name}}">
@@ -56,3 +56,16 @@
 </div>
 
 <p-toast/>
+
+@if (products.length !== 0) {
+  <div class="mb-2">
+    <p-paginator
+      [first]="first"
+      [rows]="rows"
+      [totalRecords]="totalRecords"
+      [rowsPerPageOptions]="[10, 20]"
+      (onPageChange)="onPageChange($event)">
+    </p-paginator>
+  </div>
+
+}
