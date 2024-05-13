@@ -3,6 +3,7 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "../node_modules/primeflex/primeflex.scss";
+
 * {
   --main-red: #F83D2F;
   --main-red-light: #fa5b4f;
@@ -45,7 +46,6 @@ a {
 .order-button {
   background: var(--main-green);
   text-transform: uppercase;
-  margin-bottom: 5rem;
   font-size: 20px;
   border: none;
   color: white;

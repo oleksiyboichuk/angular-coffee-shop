@@ -53,4 +53,8 @@ export class HeaderMenuComponent implements OnInit {
     this.visible = false;
   }
 
+  clearCart(): void {
+    this.localStorageService.clearCart();
+  }
+
 }

@@ -9,12 +9,13 @@
 
 @if (!isLoading) {
   <div class='flex justify-content-start mt-5 ml-8 align-items-center'>
-    <input type="text" pInputText class='' name='email' placeholder='Find some products...' [(ngModel)]="searchTerm"/>
+    <input type="text" pInputText name='search' placeholder='Find some products...'
+           [(ngModel)]="searchTerm"/>
   </div>
 }
 
 <div class="product-field">
-  @for (product of products  | filterSearch: searchTerm; track product) {
+  @for (product of products | filterSearch: searchTerm; track product) {
     <a routerLink="detail/{{product.id}}">
       <div class="product-block hover:shadow-7">
         <p-card header="{{product.name}}">
@@ -39,14 +40,18 @@
                 </button>
               }
 
-              <button class="bg-green-400 px-2 border-round product-button" (click)="addToCart($event, product)"
+              <button class="px-2 border-round product-button"
+                      [ngClass]="{'bg-green-600': isProductInCart(product), 'bg-green-400': !isProductInCart(product)}"
+                      (click)="addToCart($event, product)"
                       [disabled]='isProductInCart(product)'>
+
                 @if (isProductInCart(product)) {
                   <i class="pi pi-check-square py-1" style="font-size: 1.1rem; color: #fff"></i>
                 } @else {
                   <i class="pi pi-shopping-cart py-1" style="font-size: 1.1rem; color: #fff"></i>
                 }
               </button>
+
             </div>
           </div>
         </p-card>
@@ -59,12 +64,8 @@
 
 @if (products.length !== 0) {
   <div class="mb-2">
-    <p-paginator
-      [first]="first"
-      [rows]="rows"
-      [totalRecords]="totalRecords"
-      [rowsPerPageOptions]="[10, 20]"
-      (onPageChange)="onPageChange($event)">
+    <p-paginator [first]="first" [rows]="rows" [totalRecords]="totalRecords" [rowsPerPageOptions]="[10, 20]"
+                 (onPageChange)="onPageChange($event)">
     </p-paginator>
   </div>
 

@@ -19,11 +19,17 @@
 
 <div class='cart relative'>
   <p-dialog header="Cart" [(visible)]="visible" [modal]="true" class='cart'>
-    <div class='flex gap-5'>
-      @if (products.length !== 0) {
+    @if (products.length !== 0) {
+      <div class='flex justify-content-between align-items-center mb-8'>
         <button class='order-button' (click)="goToOrder()">Order now</button>
-      }
-    </div>
+        <div class="flex justify-content-center align-items-center gap-3">
+          <p>Clear cart:</p>
+          <button class="clear-cart" (click)="clearCart()">
+            <i class="pi pi-cart-minus"></i>
+          </button>
+        </div>
+      </div>
+    }
     <app-cart/>
   </p-dialog>
 </div>
